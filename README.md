@@ -16,3 +16,11 @@ https://book.mynavi.jp/manatee/detail/id=99768
 
 -Undefined判定が多く，その場合の分岐処理をしたかったのですがタイムアップしてしまいました。。。
 ➡やっぱり対応できました！
+
+※node.jsが必要です。
+nodejsディレクトリ直下にて
+$ npm install
+$ npm start
+のあと
+http://localhost:5050/
+似て動作確認してください。
