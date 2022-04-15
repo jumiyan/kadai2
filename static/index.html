@@ -1,0 +1,93 @@
+<html>
+<head>
+    <!--CDNでjQueryを使用-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <script>
+        
+    function R_Click(p_janken_r) {
+        let janken = ['グー','チョキ','パー',];//"janken"のリストを作成します。
+        let janken_r = Math.floor( Math.random() * 3);//Math.random() で乱数を作ります
+
+        let p_janken = ['グー','チョキ','パー'];//"プレイヤーのjanken"のリストを作成します。
+
+            //勝ち負けの判定機プログラムです
+            if (janken_r === p_janken_r) {
+                Result_end = "あいこです";
+            } else if(p_janken_r === 0 && janken_r === 1) {
+                Result_end = "あなたの【勝ち】";
+            }else if(p_janken_r === 1 && janken_r === 2) {
+                Result_end = "あなたの【勝ち】";
+            }else if(p_janken_r === 2 && janken_r === 0) {
+                Result_end = "あなたの【勝ち】";
+            }else {
+                Result_end = "あなたの【負け】";
+            }
+
+            //結果を表示するためのプログラムです
+            document.getElementById("jankenpon").src="jan" + janken_r + ".png";
+            $("#Rejan1").html(p_janken[p_janken_r] +"を選択しました。ジャンケンの結果は・・・？").hide(0).show(1000);
+            //(↓元ネタ)
+            //document.getElementById("Rejan1").innerHTML = p_janken[p_janken_r] +"を選択しました。ジャンケンの結果は・・・？";
+            
+            $("#Rejan2").html("相手は" + janken[janken_r] + Result_end).hide(0).show(4000);
+            document.getElementById("jankenpon2").src="jan" + p_janken_r + ".png";
+
+        }
+        /*if (CLASSES.0 ==){
+            R_Click(0);
+        }
+        */
+
+    </script>
+</head>
+<body>
+
+
+    <article id="article">
+    <h1 id="title" class="text-center h2">じゃんけんアプリ<br><small class="text-muted">with Tensorflow.js</small></h1>
+    <div class="container-image">
+        <video id="main-stream-video" width="480" height="360"></video>
+      </div>
+      <div class="container-b">
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <!--start buttonでtensolflow.jsを読み込みWebカメラを起動-->
+            <button id="start-button" class="btn btn-outline-dark">🚀 Start</button>
+          </div>
+          <div class="btn-group">
+            <!--「Predict」ボタン（推論ボタン）でWebカメラの画像をクリップしcanvas要素へと変換。
+            画像はTensorFlow.jsを使いテンソル形式へ変換し、学習済みモデルを使って10クラスの分類を行います。
+          「推論」はsetInterval()メソッドを使って0.1秒ごとに実行します。終了する際は「Clear」ボタンで画面をリロード。
+        TensorFlow.jsを実行するブラウザにはGoogle Chromeが一番最適化されています。背景は白い壁など推奨。-->
+            <button id="predict-button" class="btn btn-outline-dark">🤔 Predict</button>
+          </div>
+          <div class="btn-group">
+            <button id="clear-button" class="btn btn-outline-dark">✨ Clear</button>
+          </div>
+        </div>
+      </div>
+      <div class="container-b">
+        <div class="output">
+          <ul id="console" class="list-unstyled">
+            <li>Startでカメラ起動➡Predictで認識開始！グーチョキパーをかざしてみよう</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+     
+    <p><img id="jankenpon" src="jan.png" width="100" height="100"></p>
+
+    <br />
+    <!--
+    <button onclick="R_Click(0);"> グー</button>
+    <button onclick="R_Click(1);"> チョキ</button>
+    <button onclick="R_Click(2);"> パー</button>
+    -->
+    <p><img id="jankenpon2" src="jan.png" width="100" height="100"></p>
+    <div id="Rejan1"></div>
+    <div id="Rejan2"></div>
+    <script src="js/tensorflow.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/predict.js"></script>
+</body>
+</html>
