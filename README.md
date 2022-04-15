@@ -23,4 +23,4 @@ $ npm install
 $ npm start
 のあと
 http://localhost:5050/
-似て動作確認してください。
+にて動作確認してください。
